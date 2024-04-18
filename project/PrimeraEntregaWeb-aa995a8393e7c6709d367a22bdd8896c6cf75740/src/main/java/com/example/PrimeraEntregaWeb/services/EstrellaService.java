@@ -46,4 +46,8 @@ public class EstrellaService {
         return estrellaRepositorio.findPlanetasinEstrellas();
     }
 
+    public List<Estrella> listarEstrellasCercana(Double x, Double y, Double z) {
+        return estrellaRepositorio.findNearest(x, y, z);
+    }
+
 }

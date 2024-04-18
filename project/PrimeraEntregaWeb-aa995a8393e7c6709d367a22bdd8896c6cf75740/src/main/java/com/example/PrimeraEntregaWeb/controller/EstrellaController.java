@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.PrimeraEntregaWeb.model.Estrella;
 
 import com.example.PrimeraEntregaWeb.model.Planeta;
 import com.example.PrimeraEntregaWeb.services.EstrellaService;
+import com.example.PrimeraEntregaWeb.services.NaveService;
 
-@Controller
+@RestController
 @RequestMapping("/estrella")
 public class EstrellaController {
     Logger loggy = LoggerFactory.getLogger(getClass());
@@ -29,12 +31,15 @@ public class EstrellaController {
     @Autowired
     private EstrellaService estrellaService;
 
+    @Autowired
+    private NaveService naveService;
+
     @GetMapping("/list")
-    public String listarEstrellas(Model model) {
-        List<Estrella> estrella = estrellaService.listarEstrellas();
-        loggy.info("estrella" + estrella.size());
-        model.addAttribute("estrella", estrella);
-        return "estrella-list";
+    public List<Estrella> listarEstrellas() {
+        Double x = naveService.buscarNaveOptional("nave0").get().getCoordenadaX();
+        Double y = naveService.buscarNaveOptional("nave0").get().getCoordenadaY();
+        Double z = naveService.buscarNaveOptional("nave0").get().getCoordenadaZ();
+        return estrellaService.listarEstrellasCercana(x, y, z);
     }
 
     @GetMapping("/view/{id}")

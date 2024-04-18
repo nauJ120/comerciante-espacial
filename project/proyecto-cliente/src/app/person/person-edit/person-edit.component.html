@@ -1,0 +1,10 @@
+<div>
+    <form (ngSubmit)="guardarPersona()">
+        <input type="text" name="coordenada x" id="txtNombre" [(ngModel)]="person.coordx">
+        <input type="text" name="coordenada y" id="txtApellido" [(ngModel)]="person.coordy">
+        <input type="text" name="coordenada z" id="txtApellido" [(ngModel)]="person.coordz">
+        <button type="submit">
+            Guardar
+        </button>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div>
+    <h1>Lista de estrellas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Ver</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of persons">
+                <td>{{person.coordx}}</td>
+                <td>{{person.coordy}}</td>
+                <td><a [routerLink]="['/person/view', person.id]">Ver</a></td>
+                <td><a [routerLink]="['/person/edit', person.id]">Editar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
